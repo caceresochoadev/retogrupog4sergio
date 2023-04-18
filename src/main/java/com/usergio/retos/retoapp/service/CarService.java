@@ -19,23 +19,24 @@ public class CarService {
     public Car save(Car car){
         return repository.save(car);
     }
-
     public Optional<Car> getFindById(Long id){
         return repository.findById(id);
     }
-    public Car updateCar(Car carUpdate){
-        Optional<Car> car = getFindById(carUpdate.getIdCar());
-        if(car.isPresent()){
-            car.get().setName(carUpdate.getName());
-            car.get().setBrand(carUpdate.getBrand());
-            car.get().setYear(carUpdate.getYear());
-            car.get().setDescription(carUpdate.getDescription());
-            car.get().setGama(carUpdate.getGama());
-            return repository.save(car.get());
+    public Car updateCar(Car car){
+        Optional<Car> carUpdate = getFindById(car.getIdCar());
+        if(carUpdate.isPresent()){
+            carUpdate.get().setName(car.getName());
+            carUpdate.get().setBrand(car.getBrand());
+            carUpdate.get().setYear(car.getYear());
+            carUpdate.get().setDescription(car.getDescription());
+            carUpdate.get().setGama(car.getGama());
+            return repository.save(carUpdate.get());
         }
         else{
-            return carUpdate;
+            return car;
         }
     }
-
+    public void deleteCar(long id){
+        repository.deleteById(id);
+    }
 }

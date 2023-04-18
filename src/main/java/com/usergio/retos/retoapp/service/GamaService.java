@@ -29,41 +29,26 @@ public class GamaService {
         return repository.save(gama);
     }
 
+    /**
+     * metodo para encontrar un objeto por id (Primary Key) tipo long
+     * @param id (Primary key)
+     * @return Optional<Gama>
+     */
     public Optional<Gama> getFindById(Long id){
         return repository.findById(id);
     }
-    /*
-    public ResponseEntity updateGama(Gama gamaUpdate){
-        Optional<Gama> gama = getFindById(gamaUpdate.getIdGama());
-        if(gama.isPresent()){
-            gama.get().setDescription(gamaUpdate.getDescription());
-            gama.get().setName(gamaUpdate.getName());
-            repository.save(gama.get());
-            return ResponseEntity.status(201).build();
+    public Gama updateGama(Gama gama){
+        Optional<Gama> gamaUpdate = getFindById(gama.getIdGama());
+        if(gamaUpdate.isPresent()){
+            gamaUpdate.get().setDescription(gama.getDescription());
+            gamaUpdate.get().setName(gama.getName());
+            return repository.save(gamaUpdate.get());
         }
         else{
-            return ResponseEntity.notFound().build();
+            return gama;
         }
     }
-
-     */
-    public Gama updateGama(Gama gamaUpdate){
-        Optional<Gama> gama = getFindById(gamaUpdate.getIdGama());
-        if(gama.isPresent()){
-            gama.get().setDescription(gamaUpdate.getDescription());
-            gama.get().setName(gamaUpdate.getName());
-            return repository.save(gama.get());
-        }
-        else{
-            return gamaUpdate;
-        }
-    }
-
     public void deleteGama(long id){
         repository.deleteById(id);
     }
-
-
-
-
 }

@@ -6,7 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @Data
-@Builder
+@Builder // crear un objeto
 public class Mensaje {
     private int httpCode;
     private String mensaje;
