@@ -42,7 +42,7 @@ public class ApiCar {
         service.save(car);
         return ResponseEntity.status(201).build();
     }
-    @PutMapping("/edit")
+    @PutMapping("/update")
     public ResponseEntity edit(@RequestBody Car car){
         service.updateCar(car);
         return ResponseEntity.status(201).build();
@@ -50,6 +50,7 @@ public class ApiCar {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCar(@PathVariable long id) {
+        service.deleteCar(id);
         return ResponseEntity.status(204).build();
     }
 }
